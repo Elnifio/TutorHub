@@ -16,7 +16,7 @@ Author: Elnifio
     
     <!-- font-awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     {% load staticfiles %}
 
     <!-- General Style -->
@@ -42,7 +42,7 @@ Author: Elnifio
         </div>
     </nav> {% endcomment %}
     <div class="container page-header">
-        <span>
+        <span style="text-align:center">
             <br />
             <a href="/"> <h2 style="color: rgb(75, 156, 211)"> # Events</h2></a>
             {% comment %} <p> - An Event Hub </p> {% endcomment %}
@@ -51,21 +51,53 @@ Author: Elnifio
     </div>
     <div class="container page-body">
         <div class="row">
-            <div class="col-md-2 col-lg-2 col-xl-2 col-0"></div> <!-- This is a separator for the login content-->
+            <div class="col-md-4 col-lg-4 col-xl-4 col-0"></div> <!-- This is a separator for the login content-->
             {% comment %} <div class="col-md-8 col-lg-8 col-xl-8 col-12" style="background: rgb(75, 156, 211)"> {% endcomment %}
-            <div class="col-md-8 col-lg-8 col-xl-8 col-12">
+            <div class="col-md-4 col-lg-4 col-xl-4 col-12">
                 <div class="card">
                     <div class="card-header bg-info">
                         <h4 style="text-align: center">Log in to your account</h4>
+                        <p id="result">test</p>
                     </div>
-                    <div class="card-body" style="text-align:center">
-                        <p>Login prompt</p>
+                    {% comment %} <div class="card-body" style="text-align:center"> {% endcomment %}
+                    <div class="card-body">
+                        <form method="get">
+                            <div class="form-group">
+                                <label for="name">Name: </label>
+                                    <input type="text" class="form-control" id="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd">Password: </label>
+                                    <input type="password" class="form-control" id="pwd">
+                            </div>
+                            {% comment %} <div class="form-group">
+                                <label for="email">Email:</label>
+                                    <input type="email" class="form-control">
+                            </div> {% endcomment %}
+                            <button type="submit" class="btn btn-primary" value="Login" id="auth">Log in</button>
+                        </form>
+                        
+                        <script>
+                            $(document).ready(function() {
+                                $('#auth').click(function(){
+                                    $.getJSON("/auth", function(ret){
+                                        // window.alert(ret["status"]);
+                                        if (ret.status) {
+                                            window.alert("success");
+                                        } else {
+                                            window.alert("Unsuccess");
+                                        }
+                                    })
+                                })
+                            });
+                        </script>
+
                     </div>
 
                 </div>
                 {% comment %} <h4>Test content</h4> {% endcomment %}
             </div>
-            <div class="col-md-2 col-lg-2 col-xl-2 col-0"></div> <!-- This is a separator for the login content-->
+            <div class="col-md-4 col-lg-4 col-xl-4 col-0"></div> <!-- This is a separator for the login content-->
         </div>
     </div>
 </body>
