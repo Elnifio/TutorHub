@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Declare Website encoding -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Header -->
+    <title>#Events Login</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    {% load staticfiles %}
+
+    <!-- General Style -->
+    <style>
+        a:link {text-decoration:none; color: #000000}    /* unvisited link */
+        a:visited {text-decoration:none; color: #000000} /* visited link */
+        a:hover {text-decoration:none; color: #000000}   /* mouse over link */
+        a:active {text-decoration:none; color: #000000}  /* selected link */
+    </style>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="global-contents">
+        <nav class="navbar navbar-expand-md bg-primary navbar-dark">
+            <!-- brand icon -->
+            <h3><a class="navbar-brand" href="{% url 'homepage' %}">#Events</a></h3>
+
+            <!-- Collapse toggle button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Collapsible Navigation Bar -->
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <!-- Navigation bar contents -->
+                <ul class="navbar-nav">
+
+                    <!-- Whitespace & Separator -->
+                    <span class="navbar-text">
+                            &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                    </span>
+
+                    <!-- Navigation bar items -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">TODO</a> <!-- TODO -->
+                    </li>
+                    
+                    <!-- Whitespace & Separator -->
+                    <span class="navbar-text">
+                            &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                    </span>
+
+                    <!-- Navigation bar items -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">TODO</a><!-- TODO -->
+                    </li>
+                    
+
+                    <!-- Whitespace & Separator -->
+                        <span class="navbar-text">
+                            &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                        </span>
+
+                        <!-- Navigation bar items -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}"><strong><i class="fa fa-address-card"></i> Log in</strong></a>
+                        </li>
+
+                        <!-- Whitespace & Separator -->
+                        <span class="navbar-text">
+                            &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                        </span>
+
+                        <!-- Navigation bar items -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><strong><i class="fa fa-id-badge"></i> Register Now!</strong></a><!-- TODO -->
+                        </li>
+                    
+                </ul>
+            </div>
+        </nav>
+    </div class="container page-body">
+        <span style="text-align:center">
+            <br />
+            <br />
+            <h6 style="color:#ADADAD">Join #Events</h6>
+            <br />
+            <h1>Create your account</h1>
+        </span>
+        {% comment %} <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <div class="progress">
+                    <br />
+                    <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated" style="width:33%">
+                    </div>
+                    <br />
+                </div>
+            </div>
+            <div class="col-3"></div>
+        </div> {% endcomment %}
+        <div class="row">
+            <div class="col-4-md col-4-lg col-4-xl col-4"></div> <!-- column separator -->
+                <div class="col-4-md col-4-lg col-4-xl col-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <form method="get" name="user" action="{% url 'register_step_2' %}">
+                                <div class="form-group">
+                                    <label for="name"><span>
+                                    Name: 
+                                    {% if no_name %}
+                                    <span style="color:red">Required</span>
+                                    {% else %}
+                                    {% endif %}
+                                    </span></label>
+                                    <input type="text" class="form-control" id="name" name="name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pwd"><span>
+                                    Password: 
+                                    {% if empty_password %}
+                                    <span style="color:red">Required</span>
+                                    {% elif invalid_password %}
+                                    <span style="color:red">Unrecommended password</span>
+                                    {% else %}
+                                    {% endif %}
+                                    </span></label>
+                                    <input type="password" class="form-control" id="pwd" name="pwd">
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirm"><span>
+                                    Confirm Password: 
+                                    {% if not_match %}
+                                    <span style="color:red">Password doesn't match</span>
+                                    {% else %}
+                                    {% endif %}
+                                    </span></label>
+                                    <input type="password" class="form-control" id="confirm" name="confirm">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email"><span>
+                                    Email: 
+                                    {% if no_email %}
+                                    <span>Required</span>
+                                    {% else %}
+                                    {% endif %}
+                                    </span></label>
+                                    <input type="email" class="form-control" id="email" name="email">
+                                </div>
+                                <button type="submit" class="btn btn-primary" value="Submit" id="register">Continue</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            <div class="col-4-md col-4-lg col-4-xl col-4"></div> <!-- column separator -->
+        </div>
+    <div>
+        
+    </div>
+    
+</body>

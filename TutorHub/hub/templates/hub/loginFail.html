@@ -52,7 +52,8 @@ Author: Elnifio
                         <h5 style="text-align: center" id="title">Log in to your account</h5>
                     </div>
                     <div class="card-body">
-                        <form method="get" name="user" onsubmit="return submitform()" action="{% url 'auth' %}">
+                        {% comment %} <form method="get" name="user" onsubmit="return submitform()" action="{% url 'auth' %}"> {% endcomment %}
+                        <form method="get" name="user" action="{% url 'auth' %}">
                             <div class="form-group">
                                 <label for="name">Name: </label>
                                     <input type="text" class="form-control" id="name" name="name">

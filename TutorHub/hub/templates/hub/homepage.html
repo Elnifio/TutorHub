@@ -92,7 +92,7 @@
 
                         <!-- Navigation bar items -->
                         <li class="nav-item">
-                            <a class="nav-link" href="/login"><strong><i class="fa fa-address-card"></i> Log in</strong></a>
+                            <a class="nav-link" href="{% url 'login' %}"><strong><i class="fa fa-address-card"></i> Log in</strong></a>
                         </li>
 
                         <!-- Whitespace & Separator -->
@@ -102,7 +102,7 @@
 
                         <!-- Navigation bar items -->
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><strong><i class="fa fa-id-badge"></i> Register Now!</strong></a><!-- TODO -->
+                            <a class="nav-link" href="{% url 'register' %}"><strong><i class="fa fa-id-badge"></i> Register Now!</strong></a><!-- TODO -->
                         </li>
                     {% endif %}
                     
@@ -117,17 +117,4 @@
     <div id="non-login-user">
     </div>
     {% endif %}
-</body>
-
-<body>
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                
-            </div>
-        </div>
-    </nav>
-    {% comment %} <div class="container page-header" style="background: rgb(75, 156, 211)">
-        
-    </div> {% endcomment %}
 </body>
