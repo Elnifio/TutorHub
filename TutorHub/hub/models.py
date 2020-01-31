@@ -1,4 +1,5 @@
 from django.db import models
+import json
 
 # This is the user model that contains all users that can log in to our website.
 class User(models.Model):
@@ -7,7 +8,12 @@ class User(models.Model):
     email = models.EmailField();
     is_admin = models.IntegerField(default=0);
     is_publisher = models.IntegerField(default=0);
-    preference = models.TextField();
+    preference = models.TextField(default="{}");
+    tags = models.TextField(default="{}");
+    
+    def get_tags(self):
+        return json.loads(self.tags)
+    
     pass
 
 

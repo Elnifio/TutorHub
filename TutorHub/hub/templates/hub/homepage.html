@@ -31,6 +31,95 @@
 </head>
 
 <body>
+    <div id="global-contents">
+        <nav class="navbar navbar-expand-md bg-primary navbar-dark">
+            <!-- brand icon -->
+            <h3><a class="navbar-brand" href="#">#Events</a></h3>
+
+            <!-- Collapse toggle button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Collapsible Navigation Bar -->
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <!-- Navigation bar contents -->
+                <ul class="navbar-nav">
+                    <!-- Whitespace & Separator -->
+                    <span class="navbar-text">
+                            &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                    </span>
+
+                    <!-- Navigation bar items -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">TODO</a> <!-- TODO -->
+                    </li>
+                    
+                    <!-- Whitespace & Separator -->
+                    <span class="navbar-text">
+                            &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                    </span>
+
+                    <!-- Navigation bar items -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">TODO</a><!-- TODO -->
+                    </li>
+                    {% if login %}
+
+                    <!-- Whitespace & Separator -->
+                    <span class="navbar-text">
+                            &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                    </span>
+
+                    <!-- Navigation bar dropdown menu -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            My Account
+                        </a>
+                        <!-- Dropdown menu items -->
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item">TODO</a> <!-- TODO --> <!-- My profile -->
+                            <a class="dropdown-item">TODO</a> <!-- TODO --><!-- Settings -->
+                            <a class="dropdown-item">TODO</a> <!-- TODO --><!-- Log out -->
+                        </div>
+                    </li>
+                    {% else %}
+
+                    <!-- Whitespace & Separator -->
+                        <span class="navbar-text">
+                            &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                        </span>
+
+                        <!-- Navigation bar items -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login"><strong><i class="fa fa-address-card"></i> Log in</strong></a>
+                        </li>
+
+                        <!-- Whitespace & Separator -->
+                        <span class="navbar-text">
+                            &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                        </span>
+
+                        <!-- Navigation bar items -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><strong><i class="fa fa-id-badge"></i> Register Now!</strong></a><!-- TODO -->
+                        </li>
+                    {% endif %}
+                    
+                </ul>
+            </div>
+        </nav>
+    </div>
+    {% if login %}
+    <div id="login-specific">
+    </div>
+    {% else %}
+    <div id="non-login-user">
+    </div>
+    {% endif %}
+</body>
+
+<body>
     <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
