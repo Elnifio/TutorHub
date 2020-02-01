@@ -153,6 +153,8 @@
                                     Email: 
                                     {% if no_email %}
                                     <span>Required</span>
+                                    {% elif multiple_email %}
+                                    <span>Email already registered</span>
                                     {% else %}
                                     {% endif %}
                                     </span></label>
