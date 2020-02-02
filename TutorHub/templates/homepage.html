@@ -14,8 +14,6 @@
     <!-- font-awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    {% load staticfiles %}
-
     <!-- General Style -->
     <style>
         a:link {text-decoration:none; color: #000000}    /* unvisited link */
@@ -64,8 +62,8 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">TODO</a><!-- TODO -->
                     </li>
-                    {% if login %}
-
+                    
+                    <!-- Login content -->
                     <!-- Whitespace & Separator -->
                     <span class="navbar-text">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -83,8 +81,8 @@
                             <a class="dropdown-item" href="/logout">Log out</a> <!-- TODO --><!-- Log out -->
                         </div>
                     </li>
-                    {% else %}
-
+                    
+                    <!-- Not Login content -->
                     <!-- Whitespace & Separator -->
                         <span class="navbar-text">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -104,7 +102,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'register' %}"><strong><i class="fa fa-id-badge"></i> Register Now!</strong></a><!-- TODO -->
                         </li>
-                    {% endif %}
                     
                 </ul>
             </div>
@@ -114,37 +111,31 @@
 
     <div id="recommended" class="carousel slide" data-ride="carousel">
         <ul class="carousel-indicators">
-            {% for counter in event_counts %}
-                {% if counter == 0 %}
-                    <li data-target="#recommended" data-slide-to="{{ counter }}" class="active"></li>
-                {% else %}
-                    <li data-target="#recommended" data-slide-to="{{ counter }}"></li>
-                {% endif %}
-            {% endfor %}
+            <!-- First carousel item -->
+            <li data-target="#recommended" data-slide-to="0" class="active"></li>
+            <!-- Second carousel item -->
+            <li data-target="#recommended" data-slide-to="1"></li>
         </ul>
 
         <div class="carousel-inner">
-            {% for event in events %}
-                {% if event == events.head %}
+        <!-- First carousel item -->
                     <div class="carousel-item active">
                         <div id="event-card" style="text-align:center">
                             <span>
-                                <h4>Test title</h4>
-                                <p>Test content</p>
+                                <h4>First title - Jan 26th, 2020</h4>
+                                <p>This is a test for the first event item.</p>
                             </span>
                         </div>
                     </div>
-                {% else %}
+                <!-- Second carousel item-->
                     <div class="carousel-item">
                         <div id="event-card" style="text-align:center">
                             <span>
-                                <h4>Test title</h4>
-                                <p>Test content</p>
+                                <h4>Second title - Jan 27th, 2020</h4>
+                                <p>This is a test for the second event item</p>
                             </span>
                         </div>
                     </div>
-                {% endif %}
-            {% endfor %}
         </div>
         <a class="carousel-control-prev" href="#recommended" data-slide="prev">
             <span class="carousel-control-prev-icon"></span>
@@ -153,11 +144,10 @@
             <span class="carousel-control-next-icon"></span>
         </a>
     </div>
-    {% if login %}
+    <!-- Display for login users-->
     <div id="login-specific">
     </div>
-    {% else %}
+    <!-- Display for non-login users-->
     <div id="non-login-user">
     </div>
-    {% endif %}
 </body>

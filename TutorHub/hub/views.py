@@ -14,7 +14,9 @@ def homepage(request):
     login_status = request.COOKIES.get('login', False)
     user_id = request.COOKIES.get('id', -1)
     return render(request, 'hub/homepage.html', {
-        "login": login_status
+        "login": login_status, 
+        "event_counts": range(Event.objects.all().count()),
+        "events": Event.objects.all()
     })
 
 
@@ -25,14 +27,18 @@ def login_page(request):
 def logout(request):
     if request.COOKIES.get('login', False):
         response = render(request, 'hub/homepage.html', {
-            'login': False
+            'login': False,
+            "event_counts": range(Event.objects.all().count()),
+            "events": Event.objects.all()
         })
         response.delete_cookie('login')
         response.delete_cookie('id')
         return response
     else:
         return render(request, 'hub/homepage.html', {
-            'login': False
+            'login': False,
+            "event_counts": range(Event.objects.all().count()),
+            "events": Event.objects.all()
         })
 
 
@@ -84,7 +90,9 @@ def register_user(request):
 
     # TODO change this url to register page 2
     response = render(request, 'hub/homepage.html', {
-        'login': True
+        'login': True,
+        "event_counts": range(Event.objects.all().count()),
+        "events": Event.objects.all()
     })
     if not 'login' in request.COOKIES:
         response.set_cookie('login', False)
@@ -148,7 +156,9 @@ def validate_user(request):
         })
     
     response = render(request, 'hub/homepage.html', {
-        'login': True
+        'login': True,
+        "event_counts": range(Event.objects.all().count()),
+        "events": Event.objects.all()
     })
     response.set_cookie('login', True)
     response.set_cookie('id', user.user_id)

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+{% comment %}
+Author: Elnifio
+{% endcomment %}
+<head>
+    <!-- Declare Website encoding -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Header -->
+    <title>#Events Login</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- General Style -->
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container page-header">
+        <span style="text-align:center">
+            <br />
+            <a href="{% url 'homepage' %}"> <h2 style="color: rgb(75, 156, 211)"> # Events</h2></a>
+            <hr />
+        </span>
+    </div>
+    <div class="container page-body">
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-xl-4 col-0"></div> <!-- This is a separator for the login content-->
+            <div class="col-md-4 col-lg-4 col-xl-4 col-12">
+                <div class="card">
+                    <div class="card-header bg-info text-white">
+                        <h5 style="text-align: center" id="title">Log in to your account</h5>
+                    </div>
+                    <div class="card-body">
+                        
+                        <form method="get" name="user" action="{% url 'auth' %}">
+                            <div class="form-group">
+                                <label for="email">Email: </label>
+                                    <input type="email" class="form-control" id="email" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd">Password: </label>
+                                    <input type="password" class="form-control" id="pwd" name="pwd">
+                            </div>
+                        
+                        
+                        
+                        
+                            <button type="submit" class="btn btn-primary" value="Submit" id="auth">Log in</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-xl-4 col-0"></div> <!-- This is a separator for the login content-->
+        </div>
+    </div>
+</body>
