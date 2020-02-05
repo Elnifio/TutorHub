@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
-from hub.models import User, Event
+from hub.models import User, Event, Tag
 from django.http import HttpResponse, JsonResponse
+import json
+
 
 unsafe_password = [
     '123456',
@@ -121,7 +123,6 @@ def register_user(request):
     return response
     
 
-
 def validate_user(request):
     # print(request.COOKIES)
     # print(request.session)
@@ -163,3 +164,63 @@ def validate_user(request):
     response.set_cookie('login', True)
     response.set_cookie('id', user.user_id)
     return response
+
+
+def create_event(request):
+    event_name = ""
+    event_date = ""
+    event_description = ""
+
+    no_name = False
+    no_date = False
+    no_description = False
+    no_tags = False
+    no_hoster = False
+    no_location = False
+    no_poster = False
+    no_poster_continue = False
+
+    if not ('name' in request.GET and request.GET['name']):
+        no_name = True
+    if not ('date' in request.GET and request.GET['date']):
+        no_date = True
+    if not ("description" in request.GET and request.GET['description']):
+        no_description = True
+    if not ('tags' in request.GET and request.GET['tags']):
+        no_tags = True
+    if not ('hoster' in request.GET and request.GET['hoster']):
+        no_hoster = True
+    if not ('location' in request.GET and request.GET['location']):
+        no_location = True
+    if not ('poster' in request.GET and request.GET['poster']):
+        no_poster = True
+
+    if not (not no_name and not no_date and not no_description and not no_tags and not no_hoster and not no_location):
+        return render(request, 'hub/createEvent.html', {
+            'no_name': no_name,
+            'no_date': no_date,
+            'no_description': no_description,
+            'no_tags': no_tags,
+            'no_hoster': no_hoster,
+            'no_location': no_location,
+            'no_poster': no_poster,
+        })
+
+    event = Event()
+    event.name = request.GET['name']
+    event.date = request.GET['date']
+    event.description = request.GET['description']
+    tags = request.GET['tags'].replace(" ", "").split(",")
+    tag_list = []
+    for tag in tags: 
+        tag = tag.lower()
+        if not Tag.objects.filter(tag_name=tag):
+            t = Tag()
+            t.tag_name = tag
+            t.save()
+        tag_list.append(tag)
+    event.tags = json.dumps(tag_list)
+        
+
+    
+    

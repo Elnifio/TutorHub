@@ -28,6 +28,7 @@ class Event(models.Model):
     hoster = models.TextField(default="")
     location = models.TextField(default="")
     likes = models.IntegerField(default=0)
+    poster = models.ImageField(upload_to='usr_img')
 
     def get_name(self):
         return self.name.split(" ").join("_")
@@ -40,4 +41,8 @@ class Event(models.Model):
         self.save()
     pass
 
+    
+class Tag(models.Model):
+    tag_id = models.AutoField(primary_key=True)
+    tag_name = models.TextField(default="")
     
