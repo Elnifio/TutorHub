@@ -1,4 +1,6 @@
 from django.urls import path, include
+from django.conf.urls.static import static
+from django.conf import settings
 
 import hub.views
 
@@ -9,4 +11,4 @@ urlpatterns = [
     path("register", hub.views.register_page, name="register"),
     path("register_page_2", hub.views.register_user, name="register_step_2"),
     path('logout', hub.views.logout, name="logout"),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
