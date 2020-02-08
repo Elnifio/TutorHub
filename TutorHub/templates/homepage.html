@@ -9,10 +9,13 @@
     <title>#Events Login</title>
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    
     
     <!-- font-awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
     <!-- General Style -->
     <style>
@@ -26,11 +29,16 @@
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <!-- cuztomized css -->
+    <link rel="stylesheet" type="text/css" href="homepage.css">
 </head>
 
 <body>
+    
     <div id="global-contents">
-        <nav class="navbar navbar-expand-md bg-primary navbar-dark">
+        <!-- navbar -->
+        <nav class="navbar navbar-expand-md navbar-dark">
             <!-- brand icon -->
             <h3><a class="navbar-brand" href="/">#Events</a></h3>
 
@@ -109,34 +117,75 @@
     </div>
     <br />
 
+    <!-- carousel -->
+    <div class = "container">
     <div id="recommended" class="carousel slide" data-ride="carousel">
         <ul class="carousel-indicators">
             <!-- First carousel item -->
             <li data-target="#recommended" data-slide-to="0" class="active"></li>
             <!-- Second carousel item -->
             <li data-target="#recommended" data-slide-to="1"></li>
+            <li data-target="#recommended" data-slide-to="2"></li>
+            <li data-target="#recommended" data-slide-to="3"></li>
+            
         </ul>
 
-        <div class="carousel-inner">
+        <div class="carousel-inner" role = "listbox">
         <!-- First carousel item -->
                     <div class="carousel-item active">
-                        <div id="event-card" style="text-align:center">
-                            <span>
+                        <!-- insert event page -->
+                            <div id="event-card" style="text-align:center">
+                                <img src= "homepagePics/display.jpg" alt ="photo not found" style="width: 100%;">
+                                <div class = "carousel-caption">
+                                        <h1>Find your events at UNC</h1>
+                                <span>
                                 <h4>First title - Jan 26th, 2020</h4>
                                 <p>This is a test for the first event item.</p>
                             </span>
+                                </div>
                         </div>
                     </div>
                 <!-- Second carousel item-->
                     <div class="carousel-item">
                         <div id="event-card" style="text-align:center">
+                            <img src= "homepagePics/board1.jpg" alt ="photo not found" style="width: 100%;">
+                                <div class = "carousel-caption">
+                                        <h1>Men's Basketball vs. Duke</h1>
                             <span>
-                                <h4>Second title - Jan 27th, 2020</h4>
-                                <p>This is a test for the second event item</p>
+                                <h4>6:30 pm, Feb 8th, 2020</h4>
+                                <p>Dean Dome</p>
                             </span>
                         </div>
                     </div>
         </div>
+                <!-- Third carousel item-->
+                    <div class="carousel-item">
+                        <div id="event-card" style="text-align:center">
+                            <img src= "homepagePics/board2.jpg" alt ="photo not found" style="width: 100%;">
+                                <div class = "carousel-caption">
+                                        <h1>Jazz Combo</h1>
+                            <span>
+                                <h4>7 pm, Feb 10th, 2020</h4>
+                                <p>UNC Department of Music</p>
+                            </span>
+                        </div>
+                    </div>
+        </div>
+                <!-- Fourth carousel item-->
+                    <div class="carousel-item">
+                        <div id="event-card" style="text-align:center">
+                            <img src= "homepagePics/board3.jpg" alt ="photo not found" style="width: 100%;">
+                                <div class = "carousel-caption">
+                                        <h1>Men's Footbal vs. Miami</h1>
+                            <span>
+                                <h4>8:00 pm, Sep 7th, 2020</h4>
+                                <p>Kenan Memorial Stadium</p>
+                            </span>
+                        </div>
+                    </div>
+        </div>
+            
+            
         <a class="carousel-control-prev" href="#recommended" data-slide="prev">
             <span class="carousel-control-prev-icon"></span>
         </a>
@@ -144,10 +193,24 @@
             <span class="carousel-control-next-icon"></span>
         </a>
     </div>
+        </div>
+    </div>
+    
+    <!-- footer -->
+    <footer>
+        <div class="container">
+            <p>#heelEvents
+        </div>
+        
+    </footer>
+
+    
     <!-- Display for login users-->
     <div id="login-specific">
     </div>
     <!-- Display for non-login users-->
     <div id="non-login-user">
     </div>
+        
 </body>
+
