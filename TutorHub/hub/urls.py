@@ -11,4 +11,5 @@ urlpatterns = [
     path("register", hub.views.register_page, name="register"),
     path("register_page_2", hub.views.register_user, name="register_step_2"),
     path('logout', hub.views.logout, name="logout"),
+    path('detail/<int:event_id>', hub.views.detailed_page, name="detail"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

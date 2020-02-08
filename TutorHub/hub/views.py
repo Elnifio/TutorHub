@@ -15,10 +15,33 @@ def homepage(request):
     print(request.COOKIES)
     login_status = request.COOKIES.get('login', False)
     user_id = request.COOKIES.get('id', -1)
+    events = Event.objects.all()[:3]
     return render(request, 'hub/homepage.html', {
         "login": login_status, 
-        "event_counts": range(Event.objects.all().count()),
-        "events": Event.objects.all()[:3],
+        "event_counts": 3,
+        "events": events,
+    })
+
+
+def detailed_page(request, event_id):
+    if not Event.objects.all().filter(event_id=event_id).exists():
+        return HttpResponse("Object " + str(event_id) + "Not Found.")
+    event = Event.objects.all().get(event_id=event_id)
+    event_tags = event.get_tags()
+    all_tags = Tag.objects.all()
+    related = Event.objects.none()
+    for tag in event_tags:
+        if not all_tags.filter(tag_name=tag).exists():
+            t = Tag()
+            t.tag_name = tag
+            t.register_event(event_id)
+            t.save()
+        events = all_tags.get(tag_name=tag).get_all_related_events()
+        related = related.union(events)
+    
+    return render(request, 'hub/detailed.html', {
+        'event': event,
+        'related': related
     })
 
 
@@ -30,8 +53,8 @@ def logout(request):
     if request.COOKIES.get('login', False):
         response = render(request, 'hub/homepage.html', {
             'login': False,
-            "event_counts": range(Event.objects.all().count()),
-            "events": Event.objects.all()
+            "event_counts": 3,
+            "events": Event.objects.all()[:3]
         })
         response.delete_cookie('login')
         response.delete_cookie('id')
@@ -39,8 +62,8 @@ def logout(request):
     else:
         return render(request, 'hub/homepage.html', {
             'login': False,
-            "event_counts": range(Event.objects.all().count()),
-            "events": Event.objects.all()
+            "event_counts": 3,
+            "events": Event.objects.all()[:3]
         })
 
 
@@ -93,8 +116,8 @@ def register_user(request):
     # TODO change this url to register page 2
     response = render(request, 'hub/homepage.html', {
         'login': True,
-        "event_counts": range(Event.objects.all().count()),
-        "events": Event.objects.all()
+        "event_counts": 3,
+        "events": Event.objects.all()[:3]
     })
     if not 'login' in request.COOKIES:
         response.set_cookie('login', False)
@@ -124,11 +147,6 @@ def register_user(request):
     
 
 def validate_user(request):
-    # print(request.COOKIES)
-    # print(request.session)
-    # status = {"user": "", "status": False}
-    # print("Query Dict: ")
-    # print(request.GET)
     user_name = ""
     password = ""
     if 'email' in request.GET and request.GET['email']:
@@ -158,8 +176,8 @@ def validate_user(request):
     
     response = render(request, 'hub/homepage.html', {
         'login': True,
-        "event_counts": range(Event.objects.all().count()),
-        "events": Event.objects.all()
+        "event_counts": 3,
+        "events": Event.objects.all()[:3]
     })
     response.set_cookie('login', True)
     response.set_cookie('id', user.user_id)

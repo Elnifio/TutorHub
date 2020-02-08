@@ -150,7 +150,7 @@
                     </div>
                     {% for event in events %}
                     <div class="carousel-item">
-                        <a href="#">
+                        <a href="/detail/{{ event.event_id }}">
                             <div id="event-card" style="text-align:center">
                                 <img src= "{{ event.poster.url }}" alt ="photo not found" style="width: 100%;">
                                 <div class = "carousel-caption">
@@ -169,63 +169,6 @@
                 
                 
         </div>
-        {% comment %} <div class="carousel-inner" role = "listbox">
-        <!-- First carousel item -->
-                    <div class="carousel-item active">
-                        <!-- insert event page -->
-                            <div id="event-card" style="text-align:center">
-                                <img src= {% static 'hub/pictures/display.jpg' %} alt ="photo not found" style="width: 100%;">
-                                <div class = "carousel-caption">
-                                        <h1>Find your events at UNC</h1>
-                                <span>
-                                <h4>#Events</h4>
-                                <p>Powered by Django</p>
-                            </span>
-                                </div>
-                        </div>
-                    </div>
-                <!-- Second carousel item-->
-                    <div class="carousel-item">
-                        <a href="#">
-                            <div id="event-card" style="text-align:center">
-                                <img src= {% static 'hub/pictures/board1.jpg' %} alt ="photo not found" style="width: 100%;">
-                                    <div class = "carousel-caption">
-                                            <h1>Men's Basketball vs. Duke</h1>
-                                <span>
-                                    <h4>6:30 pm, Feb 8th, 2020</h4>
-                                    <p>Dean Dome</p>
-                                </span>
-                            </div>
-                        </a>
-                    </div>
-        </div>
-                <!-- Third carousel item-->
-                    <div class="carousel-item">
-                        <div id="event-card" style="text-align:center">
-                            <img src= {% static 'hub/pictures/board2.jpg' %} alt ="photo not found" style="width: 100%;">
-                                <div class = "carousel-caption">
-                                        <h1>Jazz Combo</h1>
-                            <span>
-                                <h4>7 pm, Feb 10th, 2020</h4>
-                                <p>UNC Department of Music</p>
-                            </span>
-                        </div>
-                    </div>
-        </div>
-                <!-- Fourth carousel item-->
-                    <div class="carousel-item">
-                        <div id="event-card" style="text-align:center">
-                            <img src= {% static 'hub/pictures/board3.jpg' %} alt ="photo not found" style="width: 100%;">
-                                <div class = "carousel-caption">
-                                        <h1>Men's Footbal vs. Miami</h1>
-                            <span>
-                                <h4>8:00 pm, Sep 7th, 2020</h4>
-                                <p>Kenan Memorial Stadium</p>
-                            </span>
-                        </div>
-                    </div>
-        </div> {% endcomment %}
-            
             
         <a class="carousel-control-prev" href="#recommended" data-slide="prev">
             <span class="carousel-control-prev-icon"></span>
@@ -236,7 +179,35 @@
     </div>
         </div>
     </div>
-    
+
+    <!-- categories -->
+        <section class="supporting">
+        <div class="container">
+        <div class="row">
+            <div class="col">
+                <i class="fa fa-book fa-2x" aria-hidden="true"></i>
+                <h2>Academic</h2>
+                <p>Academic Related Events</p>
+                <a href="#"> EXPLORE</a><br>
+            </div>
+
+            <div class="col">
+                <i class="fa fa-users fa-2x" aria-hidden="true"></i>
+                <h2>Club</h2>
+                <p>Clubs & Extra Curriculum</p>
+                <a href="#"> EXPLORE </a><br>
+            </div>
+
+            <div class="col">
+                <i class="fa fa-handshake-o fa-2x" aria-hidden="true"></i>
+                <h2>Career</h2>
+                <p>Job Opportunities</p>
+                <a href="#"> EXPLORE</a><br>
+            </div>
+        </div>
+        </div>
+    </section>    
+
     <!-- footer -->
     <footer>
         <div class="container">

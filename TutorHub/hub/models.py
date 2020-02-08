@@ -42,7 +42,7 @@ class Event(models.Model):
 
     def __str__(self):
         self.get_time()
-        return self.name + " @ " + self.get_time()
+        return self.name + " @ " + self.get_time() + " :: " + str(self.event_id)
 
     def get_time(self):
         time = self.date
@@ -66,4 +66,21 @@ class Event(models.Model):
 class Tag(models.Model):
     tag_id = models.AutoField(primary_key=True)
     tag_name = models.TextField(default="")
+    events = models.TextField(default="[]")
+
+    def __str__(self):
+        return str(self.tag_id) + " :: " + self.tag_name
+
+    def register_event(self, event_id):
+        events = json.loads(self.events)
+        events.append(event_id)
+        self.events = json.dumps(events)
+        self.save()
+
+    def get_all_related_events(self):
+        events = json.loads(self.events)
+        out = Event.objects.none()
+        for item in events:
+            out = out.union(Event.objects.filter(event_id=item))
+        return out
     
