@@ -1,6 +1,16 @@
 from django.db import models
 import json
 
+def get_suffix(day):
+    if day == "01" or day == "21" or day == "31":
+        return "st"
+    elif day == "02" or day == "22":
+        return "nd"
+    elif day == "03" or day == "23":
+        return "rd"
+    else:
+        return "th"
+
 # This is the user model that contains all users that can log in to our website.
 class User(models.Model):
     user_id = models.AutoField(primary_key=True)
@@ -22,13 +32,24 @@ class User(models.Model):
 class Event(models.Model):
     event_id = models.AutoField(primary_key=True)
     name = models.TextField()
-    date = models.DateTimeField(auto_now=True)
+    date = models.DateTimeField()
     description = models.TextField(default="")
     tags = models.TextField(default={})
     hoster = models.TextField(default="")
     location = models.TextField(default="")
     likes = models.IntegerField(default=0)
     poster = models.ImageField(upload_to='usr_img')
+
+    def __str__(self):
+        self.get_time()
+        return self.name + " @ " + self.get_time()
+
+    def get_time(self):
+        time = self.date
+        time = time.ctime().split(" ")
+        # out = time[4] + ", "+ time[0] + ", " + time[1] + " " + time[3] + get_suffix(time[3].zfill(2))  + ", " + time[5]
+        out = str(self.date)
+        return out
 
     def get_name(self):
         return self.name.split(" ").join("_")

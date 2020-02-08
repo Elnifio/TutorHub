@@ -18,7 +18,7 @@ def homepage(request):
     return render(request, 'hub/homepage.html', {
         "login": login_status, 
         "event_counts": range(Event.objects.all().count()),
-        "events": Event.objects.all()
+        "events": Event.objects.all()[:3],
     })
 
 

@@ -132,7 +132,44 @@
             
         </ul>
 
+        
         <div class="carousel-inner" role = "listbox">
+        <!-- First carousel item -->
+                    <div class="carousel-item active">
+                        <!-- insert event page -->
+                            <div id="event-card" style="text-align:center">
+                                <img src= "{% static 'hub/pictures/display.jpg' %}" alt ="photo not found" style="width: 100%;">
+                                <div class = "carousel-caption">
+                                        <h1>Find your events at UNC</h1>
+                                <span>
+                                <h4>#Events</h4>
+                                <p>Powered by Django</p>
+                            </span>
+                                </div>
+                        </div>
+                    </div>
+                    {% for event in events %}
+                    <div class="carousel-item">
+                        <a href="#">
+                            <div id="event-card" style="text-align:center">
+                                <img src= "{{ event.poster.url }}" alt ="photo not found" style="width: 100%;">
+                                <div class = "carousel-caption">
+                                    <h1>{{ event.name }}</h1>
+                                    <span>
+                                        <h4>{{ event.get_time }}</h4>
+                                        <p>{{ event.location }}</p>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                <!-- Second carousel item-->
+                    
+                
+                
+        </div>
+        {% comment %} <div class="carousel-inner" role = "listbox">
         <!-- First carousel item -->
                     <div class="carousel-item active">
                         <!-- insert event page -->
@@ -149,15 +186,17 @@
                     </div>
                 <!-- Second carousel item-->
                     <div class="carousel-item">
-                        <div id="event-card" style="text-align:center">
-                            <img src= {% static 'hub/pictures/board1.jpg' %} alt ="photo not found" style="width: 100%;">
-                                <div class = "carousel-caption">
-                                        <h1>Men's Basketball vs. Duke</h1>
-                            <span>
-                                <h4>6:30 pm, Feb 8th, 2020</h4>
-                                <p>Dean Dome</p>
-                            </span>
-                        </div>
+                        <a href="#">
+                            <div id="event-card" style="text-align:center">
+                                <img src= {% static 'hub/pictures/board1.jpg' %} alt ="photo not found" style="width: 100%;">
+                                    <div class = "carousel-caption">
+                                            <h1>Men's Basketball vs. Duke</h1>
+                                <span>
+                                    <h4>6:30 pm, Feb 8th, 2020</h4>
+                                    <p>Dean Dome</p>
+                                </span>
+                            </div>
+                        </a>
                     </div>
         </div>
                 <!-- Third carousel item-->
@@ -185,7 +224,7 @@
                             </span>
                         </div>
                     </div>
-        </div>
+        </div> {% endcomment %}
             
             
         <a class="carousel-control-prev" href="#recommended" data-slide="prev">
