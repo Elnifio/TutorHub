@@ -7,14 +7,15 @@
 
     <!-- Header -->
     <title>#Events Login</title>
+    {% load static %}
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    
     
     <!-- font-awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    {% load staticfiles %}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
     <!-- General Style -->
     <style>
@@ -28,11 +29,17 @@
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <!-- cuztomized css -->
+    <link rel="stylesheet" type="text/css" href={% static 'hub/homepage.css' %}>
+    {% comment %} <link rel="stylesheet" type="text/css" href="homepage.css"> {% endcomment %}
 </head>
 
 <body>
+    
     <div id="global-contents">
-        <nav class="navbar navbar-expand-md bg-primary navbar-dark">
+        <!-- navbar -->
+        <nav class="navbar navbar-expand-md navbar-dark">
             <!-- brand icon -->
             <h3><a class="navbar-brand" href="/">#Events</a></h3>
 
@@ -45,9 +52,6 @@
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <!-- Navigation bar contents -->
                 <ul class="navbar-nav">
-                    {% comment %} <li class="nav-item">
-
-                    </li> {% endcomment %}
                     <!-- Whitespace & Separator -->
                     <span class="navbar-text">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -55,7 +59,7 @@
 
                     <!-- Navigation bar items -->
                     <li class="nav-item">
-                        <a class="nav-link" href="#">TODO</a> <!-- TODO -->
+                        <a class="nav-link" href="#">Explore All Tags</a> <!-- TODO -->
                     </li>
                     
                     <!-- Whitespace & Separator -->
@@ -67,13 +71,14 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">TODO</a><!-- TODO -->
                     </li>
-                    {% if login %}
-
+                    
+                    <!-- Login content -->
                     <!-- Whitespace & Separator -->
                     <span class="navbar-text">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </span>
-
+                    {% if login %}
+                    
                     <!-- Navigation bar dropdown menu -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
@@ -81,13 +86,13 @@
                         </a>
                         <!-- Dropdown menu items -->
                         <div class="dropdown-menu">
-                            <a class="dropdown-item">TODO</a> <!-- TODO --> <!-- My profile -->
-                            <a class="dropdown-item">TODO</a> <!-- TODO --><!-- Settings -->
-                            <a class="dropdown-item" href="/logout">Log out</a> <!-- TODO --><!-- Log out -->
+                            <a class="dropdown-item"><i class="fa fa-id-badge"></i> My Profile</a> <!-- TODO --> <!-- My profile -->
+                            <a class="dropdown-item"><i class="fa fa-gears"></i> Settings</a> <!-- TODO --><!-- Settings -->
+                            <a class="dropdown-item" href="/logout"><i class="fa fa-mail-forward"></i> Log out</a> <!-- TODO --><!-- Log out -->
                         </div>
                     </li>
                     {% else %}
-
+                    <!-- Not Login content -->
                     <!-- Whitespace & Separator -->
                         <span class="navbar-text">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -108,47 +113,81 @@
                             <a class="nav-link" href="{% url 'register' %}"><strong><i class="fa fa-id-badge"></i> Register Now!</strong></a><!-- TODO -->
                         </li>
                     {% endif %}
-                    
                 </ul>
             </div>
         </nav>
     </div>
     <br />
 
+    <!-- carousel -->
+    <div class = "container">
     <div id="recommended" class="carousel slide" data-ride="carousel">
         <ul class="carousel-indicators">
-            {% for counter in event_counts %}
-                {% if counter == 0 %}
-                    <li data-target="#recommended" data-slide-to="{{ counter }}" class="active"></li>
-                {% else %}
-                    <li data-target="#recommended" data-slide-to="{{ counter }}"></li>
-                {% endif %}
-            {% endfor %}
+            <!-- First carousel item -->
+            <li data-target="#recommended" data-slide-to="0" class="active"></li>
+            <!-- Second carousel item -->
+            <li data-target="#recommended" data-slide-to="1"></li>
+            <li data-target="#recommended" data-slide-to="2"></li>
+            <li data-target="#recommended" data-slide-to="3"></li>
+            
         </ul>
 
-        <div class="carousel-inner">
-            {% for event in events %}
-                {% if event == events.head %}
+        <div class="carousel-inner" role = "listbox">
+        <!-- First carousel item -->
                     <div class="carousel-item active">
-                        <div id="event-card" style="text-align:center">
-                            <span>
-                                <h4>Test title</h4>
-                                <p>Test content</p>
+                        <!-- insert event page -->
+                            <div id="event-card" style="text-align:center">
+                                <img src= {% static 'hub/pictures/display.jpg' %} alt ="photo not found" style="width: 100%;">
+                                <div class = "carousel-caption">
+                                        <h1>Find your events at UNC</h1>
+                                <span>
+                                <h4>#Events</h4>
+                                <p>Powered by Django</p>
                             </span>
+                                </div>
                         </div>
                     </div>
-                {% else %}
+                <!-- Second carousel item-->
                     <div class="carousel-item">
                         <div id="event-card" style="text-align:center">
+                            <img src= {% static 'hub/pictures/board1.jpg' %} alt ="photo not found" style="width: 100%;">
+                                <div class = "carousel-caption">
+                                        <h1>Men's Basketball vs. Duke</h1>
                             <span>
-                                <h4>Test title</h4>
-                                <p>Test content</p>
+                                <h4>6:30 pm, Feb 8th, 2020</h4>
+                                <p>Dean Dome</p>
                             </span>
                         </div>
                     </div>
-                {% endif %}
-            {% endfor %}
         </div>
+                <!-- Third carousel item-->
+                    <div class="carousel-item">
+                        <div id="event-card" style="text-align:center">
+                            <img src= {% static 'hub/pictures/board2.jpg' %} alt ="photo not found" style="width: 100%;">
+                                <div class = "carousel-caption">
+                                        <h1>Jazz Combo</h1>
+                            <span>
+                                <h4>7 pm, Feb 10th, 2020</h4>
+                                <p>UNC Department of Music</p>
+                            </span>
+                        </div>
+                    </div>
+        </div>
+                <!-- Fourth carousel item-->
+                    <div class="carousel-item">
+                        <div id="event-card" style="text-align:center">
+                            <img src= {% static 'hub/pictures/board3.jpg' %} alt ="photo not found" style="width: 100%;">
+                                <div class = "carousel-caption">
+                                        <h1>Men's Footbal vs. Miami</h1>
+                            <span>
+                                <h4>8:00 pm, Sep 7th, 2020</h4>
+                                <p>Kenan Memorial Stadium</p>
+                            </span>
+                        </div>
+                    </div>
+        </div>
+            
+            
         <a class="carousel-control-prev" href="#recommended" data-slide="prev">
             <span class="carousel-control-prev-icon"></span>
         </a>
@@ -156,11 +195,24 @@
             <span class="carousel-control-next-icon"></span>
         </a>
     </div>
-    {% if login %}
+        </div>
+    </div>
+    
+    <!-- footer -->
+    <footer>
+        <div class="container">
+            <p>#heelEvents
+        </div>
+        
+    </footer>
+
+    
+    <!-- Display for login users-->
     <div id="login-specific">
     </div>
-    {% else %}
+    <!-- Display for non-login users-->
     <div id="non-login-user">
     </div>
-    {% endif %}
+        
 </body>
+
