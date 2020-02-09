@@ -124,7 +124,8 @@ def logout(request):
         response = render(request, 'hub/homepage.html', {
             'login': False,
             "event_counts": 3,
-            "events": Event.objects.all()[:3]
+            "events": Event.objects.all()[1:4],
+            "first": Event.objects.all().first()
         })
         response.delete_cookie('login')
         response.delete_cookie('id')
@@ -133,7 +134,8 @@ def logout(request):
         return render(request, 'hub/homepage.html', {
             'login': False,
             "event_counts": 3,
-            "events": Event.objects.all()[:3]
+            "events": Event.objects.all()[1:4],
+            "first": Event.objects.all().first()
         })
 
 
@@ -187,7 +189,8 @@ def register_user(request):
     response = render(request, 'hub/homepage.html', {
         'login': True,
         "event_counts": 3,
-        "events": Event.objects.all()[:3]
+        "events": Event.objects.all()[1:4],
+        "first": Event.objects.all().first()
     })
     if not 'login' in request.COOKIES:
         response.set_cookie('login', False)
@@ -247,7 +250,8 @@ def validate_user(request):
     response = render(request, 'hub/homepage.html', {
         'login': True,
         "event_counts": 3,
-        "events": Event.objects.all()[:3]
+        "events": Event.objects.all()[1:4],
+        "first": Event.objects.all().first()
     })
     response.set_cookie('login', True)
     response.set_cookie('id', user.user_id)
