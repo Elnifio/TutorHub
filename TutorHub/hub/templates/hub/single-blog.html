@@ -9,20 +9,44 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title  -->
-    <title>Essence - Fashion Ecommerce Template</title>
-
+    <title>{{ event.name }}</title>
+    {% load static %}
     <!-- Favicon  -->
-    <link rel="icon" href="img/core-img/favicon.ico">
+    {% comment %} <link rel="icon" href="img/core-img/favicon.ico"> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'hub/core-style.css' %}">
+    <link rel="stylesheet" href="{% static 'hub/classy-nav.min.css' %}">
+    <link rel="stylesheet" href="{% static 'hub/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'hub/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'hub/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'hub/jquery-ui.min.css' %}">
+    <link rel="stylesheet" href="{% static 'hub/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'hub/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'hub/font-awesome.min.css' %}">
+    
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
 
     <!-- Core Style CSS -->
-    <link rel="stylesheet" href="single-blog-css/core-style.css">
-    <link rel="stylesheet" href="style.css">
+    {% comment %} <link rel="stylesheet" href="single-blog-css/core-style.css"> {% endcomment %}
+    {% comment %} <link rel="stylesheet" href="style.css"> {% endcomment %}
 
 </head>
 
 <body>
     <!-- ##### Header Area Start ##### -->
     <div id="global-contents">
+        <!-- navbar -->
         <!-- navbar -->
         <nav class="navbar navbar-expand-md navbar-dark">
             <!-- brand icon -->
@@ -44,7 +68,7 @@
 
                     <!-- Navigation bar items -->
                     <li class="nav-item">
-                        <a class="nav-link" href="#">TODO</a> <!-- TODO -->
+                        <a class="nav-link" href="#">Explore All Tags</a> <!-- TODO -->
                     </li>
                     
                     <!-- Whitespace & Separator -->
@@ -62,7 +86,8 @@
                     <span class="navbar-text">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </span>
-
+                    {% if login %}
+                    
                     <!-- Navigation bar dropdown menu -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
@@ -70,12 +95,13 @@
                         </a>
                         <!-- Dropdown menu items -->
                         <div class="dropdown-menu">
-                            <a class="dropdown-item">TODO</a> <!-- TODO --> <!-- My profile -->
-                            <a class="dropdown-item">TODO</a> <!-- TODO --><!-- Settings -->
-                            <a class="dropdown-item" href="/logout">Log out</a> <!-- TODO --><!-- Log out -->
+                            <a class="dropdown-item"><i class="fa fa-id-badge" style="color:green"></i> My Profile</a> <!-- TODO --> <!-- My profile -->
+                            <a class="dropdown-item"><i class="fa fa-gear fa-spin" style="color:grey"></i> Settings</a> <!-- TODO --><!-- Settings -->
+                            <a class="dropdown-item"><i class="fa fa-heart" style="color:red"></i> Favorites</a> <!-- TODO --><!-- Settings -->
+                            <a class="dropdown-item" href="/logout"><i class="fa fa-mail-forward" style="color:blue"></i> Log out</a> <!-- TODO --><!-- Log out -->
                         </div>
                     </li>
-                    
+                    {% else %}
                     <!-- Not Login content -->
                     <!-- Whitespace & Separator -->
                         <span class="navbar-text">
@@ -96,16 +122,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'register' %}"><strong><i class="fa fa-id-badge"></i> Register Now!</strong></a><!-- TODO -->
                         </li>
-                    
-                        <!-- Whitespace & Separator -->
-                        <span class="navbar-text">
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        </span>
-                    
-                        <li class = "nav-item">
+                    {% endif %}
+
+                    <li class = "nav-item">
                         <input type="text" placeholder="Search..">
                     </li>
-                    
                 </ul>
             </div>
         </nav>
@@ -118,7 +139,7 @@
 
         <!-- Single Blog Post Thumb -->
         <div class="single-blog-post-thumb">
-            <img src="images/Events/hacknc.jpg" alt="">
+            <img src="{{ event.poster.url }}" alt="No Picture Found">
         </div>
 
         <!-- Single Blog Content Wrap -->
@@ -126,43 +147,31 @@
 
             <!-- Blog Content -->
             <div class="single-blog--text">
-                <h2>HackNC Interest Meeting</h2>
-                <p>Want to help organize the largest hackathon in North Carolina, reaching over 650 students annually? Interested in developing innovative tech experiences, graphic design, marketing, sponsorship, or finance? HackNC is hosting an open call for organizers and leaders of all disciplines for our 7th year straight! Come out to SN014 (Sitterson Hall) from 6:30-7:30 PM on Tuesday, Feb. 11th to hear current board members and leaders of HackNC discuss how YOU can get involved with organizing HackNC 2020! We will be presenting open roles, positions, and committees. FREE PIZZA will be provided! 
-                </p>
-                <blockquote>
-                    <h6><i class="fa fa-quote-left" aria-hidden="true"></i> Free Food Provided!</h6>
-                    <!-- <span>Liam Neeson</span> -->
-                </blockquote>
-                <blockquote>
-                    <h6><i class="fa fa-quote-left" aria-hidden="true"></i> <a href="https://www.facebook.com/events/174670413807004">REVP Here! </a></h6>
-                </blockquote>
-
-                <p><a href="TODO">Go Back </a></p>
+                <h1>{{ event.name }}</h1>
+                <br />
+                <h5><i class="fa fa-calendar"></i> {{ event.date }}</h5>
+                <hr />
+                <p style="border-style:solid; border-top-width:0px; border-right-width:0px; border-bottom-width:0px; border-left-width:3px; border-left-color:#62C6F2; padding:10px">{{ event.description }}</p>
+                <span>
+                {% for tag in event.get_stripped_tags %}
+                    <a href="/tags/{{ tag }}"><span class="badge badge-pill badge-primary" style="font-size: 15px">#{{ tag }}</span></a>&nbsp;
+                {% endfor %}
+                </span>
+                <p><a href="/"># Events</a></p>
             </div>
 
             <!-- Related Blog Post -->
             <div class="related-blog-post">
                 <!-- Single Related Blog Post -->
-                <div class="single-related-blog-post">
-                    <img src="images/Events/0203.png" alt="">
-                    <a href="#">
-                        <h5>Google Cloud Hero Workshop</h5>
-                    </a>
-                </div>
-                <!-- Single Related Blog Post -->
-                <div class="single-related-blog-post">
-                    <img src="images/Events/0203-2.jpg" alt="">
-                    <a href="#">
-                        <h5>Where Natural Language Processing Meets Societal Needs</h5>
-                    </a>
-                </div>
-                <!-- Single Related Blog Post -->
-                <div class="single-related-blog-post">
-                    <img src="images/Events/0204.png" alt="">
-                    <a href="#">
-                        <h5>US Undergraduate Research Workshop</h5>
-                    </a>
-                </div>
+                {% for item in related %}
+                    <div class="single-related-blog-post">
+                        <img src="{{ item.poster.url }}" alt="No Picture Found">
+                        <a href="/detail/{{ item.event_id }}">
+                            <h5>{{ item.name }}</h5>
+                        </a>
+                    </div>
+                {% endfor %}
+                
                 <!-- Single Related Blog Post
                 <div class="single-related-blog-post">
                     <img src="images/Events/0204.png" alt="">
@@ -179,13 +188,13 @@
     <!-- ##### Footer Area Start ##### -->
     <footer>
         <div class="container">
-            <p>#Events
+            <h4><a href="/"><i class="fa fa-arrow-circle-left"></i> Back to #Events homepage</a></h4>
         </div>
         
     </footer>
     <!-- ##### Footer Area End ##### -->
 
-    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+    {% comment %} <!-- jQuery (Necessary for All JavaScript Plugins) -->
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
     <script src="js/popper.min.js"></script>
@@ -196,7 +205,7 @@
     <!-- Classy Nav js -->
     <script src="js/classy-nav.min.js"></script>
     <!-- Active js -->
-    <script src="js/active.js"></script>
+    <script src="js/active.js"></script> {% endcomment %}
 
 </body>
 

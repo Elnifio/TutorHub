@@ -34,7 +34,7 @@ class Event(models.Model):
     name = models.TextField()
     date = models.DateTimeField()
     description = models.TextField(default="")
-    tags = models.TextField(default={})
+    tags = models.TextField(default="[]")
     hoster = models.TextField(default="")
     location = models.TextField(default="")
     likes = models.IntegerField(default=0)
@@ -57,6 +57,10 @@ class Event(models.Model):
     def get_tags(self):
         return json.loads(self.tags)
 
+    def get_stripped_tags(self):
+        out = json.loads(self.tags)
+        return [x[1:] for x in out]
+
     def like(self):
         self.likes += 1
         self.save()
@@ -73,7 +77,8 @@ class Tag(models.Model):
 
     def register_event(self, event_id):
         events = json.loads(self.events)
-        events.append(event_id)
+        if not event_id in events:
+            events.append(event_id)
         self.events = json.dumps(events)
         self.save()
 

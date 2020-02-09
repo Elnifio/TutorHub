@@ -10,6 +10,24 @@ unsafe_password = [
     'password'
 ]
 
+# Academics Tags collection
+# Such as "Info sessions" and "Hackathon"
+ACADEMICS = [
+    '#CS',
+]
+
+# Clubs Tags collection
+# Such as "DSP" and "CPA"
+CLUB = [
+
+]
+
+# Careers Tags collection
+# Such as "Career fair" and "Tech Talks"
+CAREER = [
+
+]
+
 # Create your views here.
 def homepage(request):
     print(request.COOKIES)
@@ -36,12 +54,48 @@ def detailed_page(request, event_id):
             t.tag_name = tag
             t.register_event(event_id)
             t.save()
+        current_tag = all_tags.get(tag_name=tag).register_event(event_id)
         events = all_tags.get(tag_name=tag).get_all_related_events()
         related = related.union(events)
-    
-    return render(request, 'hub/detailed.html', {
+    related = related.difference(Event.objects.all().filter(event_id=event_id))
+    return render(request, 'hub/single-blog.html', {
         'event': event,
-        'related': related
+        'related': related,
+        'login': request.COOKIES.get('login', False)
+    })
+
+
+def tag_specific(request, tag_name):
+    if not Tag.objects.all().filter(tag_name=("#" + tag_name)).exists():
+        return HttpResponse("Tag " + tag_name + " does not exist. ")
+    tag = Tag.objects.all().get(tag_name=("#" + tag_name))
+    print(tag)
+    print(tag.get_all_related_events())
+    return render(request, 'hub/tag-specific.html', {
+        'tag': tag,
+        'events': tag.get_all_related_events()
+    })
+
+
+def all_tags(request):
+    tags = Tag.objects.all()
+    login_status = request.COOKIES.get('login', False)
+    user_id = request.COOKIES.get('id', -1)
+    if not login_status:
+        return render(request, 'hub/all_tags.html', {
+            'unfollowed_tags':tags,
+            'login': login_status,
+            'followed_tags': Tag.objects.none(),
+        })
+    user_tags = User.objects.get(user_id=user_id).get_tags()
+    followed_tags = Tag.objects.none()
+    for tag in user_tags:
+        followed_tags = followed_tags.union(Tag.objects.filter(tag_name=tag))
+    unfollowed_tags = tags.difference(followed_tags)
+    return render(request, 'hub/all_tags.html', {
+        'unfollowed_tags': unfollowed_tags,
+        'followed_tags': followed_tags,
+        'login': True
     })
 
 
