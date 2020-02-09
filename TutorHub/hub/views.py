@@ -48,10 +48,12 @@ def homepage(request):
     events = Event.objects.all()
     selector = random_choose_three(Event.objects.all().count())
     events = Event.objects.all().filter(event_id__in=[1, 4, 6])
+    first_event = Event.objects.all().get(event_id=2)
     return render(request, 'hub/homepage.html', {
         "login": login_status, 
-        "event_counts": 3,
+        "event_counts": range(3),
         "events": events,
+        "first": first_event,
     })
 
 

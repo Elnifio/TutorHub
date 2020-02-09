@@ -1,0 +1,92 @@
+body{
+  text-align: center;
+  border: 0px;
+  margin: 0px;
+}
+
+.navbar{
+  background-color: #99badd;
+}
+
+.navbar input[type=text] {
+float: right;
+padding: 6px;
+border: none;
+margin-top: 5px;
+margin-right: 16px;
+font-size: 15px;
+}
+
+.carousel-indicators li {
+display: flex;
+width: 5vw;
+height: 0.8vw;
+margin: 0.4vw;
+cursor: pointer;
+background-color: rgba(255,255,255,0.5);
+border: 0px;
+border-radius: 0px;
+}
+
+.carousel-indicators li.active{
+  display: flex;
+width: 5vw;
+height: 0.8vw;
+margin: 0.4vw;
+  background-color: white;
+cursor: pointer;
+border-radius: 0px;
+}
+
+footer{
+  position: sticky;
+  bottom: 0;
+  background-color: #685A52;
+  color: white;
+  z-index: 99;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  font-size: 1em;
+  padding-top: 10px;
+  font-family: 'Montserrat', sans-serif;
+}
+footer p i{
+  padding-left: 10px;
+}
+
+/*supporting*/
+.supporting{
+  display: block;
+  background-color:antiquewhite;
+  margin: 0px; 
+  padding: 30px;
+  position: relative;
+  z-index: 1;
+}
+.col{
+  display: inline-block;
+  padding: 10px 30px;
+  cursor: pointer;
+  position: relative;  
+  margin: 5px;
+  border-radius: 5px;
+  max-width: 30%;
+}
+.col a{
+  color: black;
+  text-decoration: none;
+  border: 2px solid black;
+  padding: 10px 15px;
+}
+.col a:hover{
+  background-color: darkgrey;
+}
+.col p{
+  font-size: 12px;
+  padding: 5px;
+}
+
+
+

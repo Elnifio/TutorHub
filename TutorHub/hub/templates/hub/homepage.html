@@ -123,6 +123,15 @@
     <!-- carousel -->
     <div class = "container">
     <div id="recommended" class="carousel slide" data-ride="carousel">
+        {% comment %} <ul class="carousel-indicators">
+            <!-- First carousel item -->
+            <li data-target="#recommended" data-slide-to="0" class="active"></li>
+            <!-- Second carousel item -->
+            <li data-target="#recommended" data-slide-to="1"></li>
+            <li data-target="#recommended" data-slide-to="2"></li>
+            <li data-target="#recommended" data-slide-to="3"></li>
+            
+        </ul> {% endcomment %}
         <ul class="carousel-indicators">
             <!-- First carousel item -->
             <li data-target="#recommended" data-slide-to="0" class="active"></li>
@@ -139,12 +148,12 @@
                     <div class="carousel-item active">
                         <!-- insert event page -->
                             <div id="event-card" style="text-align:center">
-                                <img src= "{% static 'hub/pictures/display.jpg' %}" alt ="photo not found" style="width: 100%;">
+                                <img src= "{{ first.poster.url }}" alt ="photo not found" style="width: 100%;">
                                 <div class = "carousel-caption">
-                                        <h1>Find your events at UNC</h1>
+                                        <h1>{{ first.name }}</h1>
                                 <span>
-                                <h4>#Events</h4>
-                                <p>Powered by Django</p>
+                                <h4>{{ first.time }}</h4>
+                                <p>{{ first.location }}</p>
                             </span>
                                 </div>
                         </div>
