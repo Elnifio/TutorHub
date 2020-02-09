@@ -13,4 +13,4 @@ urlpatterns = [
     path('logout', hub.views.logout, name="logout"),
     path('detail/<int:event_id>', hub.views.detailed_page, name="detail"),
     path('tags/<str:tag_name>', hub.views.tag_specific),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
