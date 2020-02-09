@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from hub.models import User, Event, Tag
 from django.http import HttpResponse, JsonResponse
-import json
+import json, random
 
 
 unsafe_password = [
@@ -28,16 +28,23 @@ CAREER = [
 
 ]
 
+def random_choose_three(input_range):
+    out_array = [random.randint(0, input_range) for x in range(3)]
+    return out_array
+
+
+
 # Create your views here.
 def homepage(request):
     print(request.COOKIES)
     login_status = request.COOKIES.get('login', False)
     user_id = request.COOKIES.get('id', -1)
-    events = Event.objects.all()[:3]
+    events = Event.objects.all()
+    selector = random_choose_three(Event.objects.all().count())
     return render(request, 'hub/homepage.html', {
         "login": login_status, 
         "event_counts": 3,
-        "events": events,
+        "events": Event.objects.all().filter(event_id__in=selector),
     })
 
 
