@@ -29,7 +29,13 @@ CAREER = [
 ]
 
 def random_choose_three(input_range):
-    out_array = [random.randint(0, input_range) for x in range(3)]
+    out_array = []
+    while len(out_array) < 3:
+        rand = random.randint(0, input_range)
+        if rand in out_array:
+            continue
+        out_array.append(rand)
+    print(out_array)
     return out_array
 
 
@@ -41,10 +47,11 @@ def homepage(request):
     user_id = request.COOKIES.get('id', -1)
     events = Event.objects.all()
     selector = random_choose_three(Event.objects.all().count())
+    events = Event.objects.all().filter(event_id__in=[1, 4, 6])
     return render(request, 'hub/homepage.html', {
         "login": login_status, 
         "event_counts": 3,
-        "events": Event.objects.all().filter(event_id__in=selector),
+        "events": events,
     })
 
 
